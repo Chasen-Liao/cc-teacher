@@ -1,0 +1,8 @@
+{
+  "name": "teacher",
+  "description": "Interactive teaching assistant for learning subjects through concepts, code examples, and quizzes. Use /teacher <subject> to start learning any subject.",
+  "author": {
+    "name": "Chasen",
+    "email": "chasen@example.com"
+  }
+}
