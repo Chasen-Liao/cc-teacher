@@ -1,40 +1,88 @@
 # cc-teacher
 
-Claude Code 交互式教学插件，通过「**概念解释 → 代码示例 → 随堂测验**」的教学模式帮助学生学习编程。
+Claude Code 交互式教学插件，专注于 **AI Agent 开发**，使用 **LangChain v1.x** 框架。
 
-## 功能特性
+## 教学理念
 
-- `/teacher <学科>` - 开启交互式学习会话
-- **MCP 工具集成**：context7（查文档）、WebSearch（搜索）、Read（读文件）
-- **三段式教学**：概念 → 示例 → 测验
-- **可扩展结构**：每个学科一个 skill 目录
+通过「**概念解释 → 代码示例 → 随堂测验**」的教学模式，让学习者：
+1. 理解核心概念和原理
+2. 掌握实际编码能力
+3. 通过测验巩固知识
+
+## 教学方向
+
+| 学科 | 内容 |
+|-----|------|
+| **Agent 开发** | LangChain、Agent、Tools、Memory、RAG |
+| 编程基础 | 变量、控制流、函数、数据结构 |
+
+## 课程内容
+
+### Agent 开发 (LangChain v1.x)
+
+```
+Module 1: LangChain 基础
+├── 核心概念与架构
+├── LCEL 语法
+└──六大模块概览
+
+Module 2: Agent 核心
+├── ReAct 模式
+├── Tool Calling
+└── Agent 类型
+
+Module 3: Tools 工具系统
+├── 内置工具
+├── 自定义 Tool
+└── 多工具协作
+
+Module 4: Memory 记忆系统
+├── BufferMemory
+├── WindowMemory
+├── SummaryMemory
+└── 向量记忆
+
+Module 5: Chains 链式调用
+├── LLMChain
+├── SequentialChain
+└── RouterChain
+
+Module 6: RAG 检索增强生成
+├── 文档处理
+├── 向量数据库
+└── RAG Agent
+
+Module 7: 实战项目
+├── 自主研究 Agent
+├── 知识库问答
+└── 多 Agent 协作
+```
 
 ## 插件结构
 
 ```
 plugins/teacher/
 ├── .claude-plugin/plugin.json   # 插件元数据
-├── commands/teacher.md          # /teacher 命令定义
-├── agents/teacher-agent.md      # Agent 配置（含 MCP 工具）
-├── skills/                      # 学科内容
-│   └── programming-basics/       # 示例学科：编程基础
-│       ├── SKILL.md              # 课程大纲
-│       ├── concepts/             # 概念详解
-│       ├── examples/             # 代码示例
-│       │   └── variables.py
-│       └── quizzes/              # 测验题
-│           └── quiz1.md
+├── commands/teacher.md          # /teacher 命令
+├── agents/teacher-agent.md      # Agent 配置
+├── skills/
+│   ├── agent-development/        # Agent 开发课程
+│   │   ├── SKILL.md
+│   │   ├── concepts/            # 6 个概念文档
+│   │   ├── examples/            # 5 个代码示例
+│   │   └── quizzes/             # 2 个测验
+│   └── programming-basics/       # 编程基础
 └── README.md
 ```
 
 ## 安装
 
-1. 克隆此仓库：
+1. 克隆仓库：
    ```bash
    git clone https://github.com/Chasen-Liao/cc-teacher.git
    ```
 
-2. 将 `plugins/teacher` 目录复制到 Claude Code 插件目录：
+2. 安装插件：
    ```bash
    cp -r plugins/teacher ~/.claude/plugins/
    ```
@@ -43,40 +91,35 @@ plugins/teacher/
 
 ## 使用方法
 
-### 启动教学会话
+```bash
+# 开始 Agent 开发学习
+/teacher agent-development
 
-```
-/teacher python
+# 或学习编程基础
 /teacher programming-basics
-/teacher <任意学科>
-```
-
-### 教学流程
-
-1. **概念解释** - 分解核心概念，建立基础理解
-2. **代码示例** - 展示实际代码，边学边练
-3. **随堂测验** - 测试学习效果，即时反馈
-
-## 添加新学科
-
-在 `plugins/teacher/skills/` 下创建新目录：
-
-```
-skills/
-├── python/                    # 新学科
-│   ├── SKILL.md               # 学科概述和课程大纲
-│   ├── concepts/              # 概念详解
-│   ├── examples/              # 代码示例
-│   └── quizzes/               # 测验题
-└── programming-basics/        # 已有学科
-    └── ...
 ```
 
 ## 技术栈
 
-- **Agent**: Claude Sonnet
-- **工具**: context7 (文档查询), WebSearch (网络搜索), Read (文件读取)
-- **模式**: 交互式问答 + 实践练习
+- **框架**: LangChain v1.x
+- **Agent**: Claude Sonnet (支持 MCP tools)
+- **工具**: context7, WebSearch, Read
+- **向量库**: ChromaDB
+
+## 扩展课程
+
+添加新学科只需在 `skills/` 下创建新目录：
+
+```
+skills/
+├── python/
+│   ├── SKILL.md
+│   ├── concepts/
+│   ├── examples/
+│   └── quizzes/
+└── agent-development/
+    └── ...
+```
 
 ## License
 
